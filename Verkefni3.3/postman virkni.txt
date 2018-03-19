@@ -1,0 +1,2 @@
+Þetta var frekar einfalt API, þú færð API key frá google, setur inn staðsetningu sem þú villt í URLið á requestinu og API keyið á endann á því
+og svo skilar þetta JSON skjali með öllum upplýsingum um staðinn.
