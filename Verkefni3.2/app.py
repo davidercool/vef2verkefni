@@ -4,10 +4,18 @@ from sqlite3 import *
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired
-from config import Config
-
+from flask_sqlalchemy import SQLAlchemy
+try: from Verkefni32 import config
+except: from config import Config
+db = SQLAlchemy(Config)
 app = Flask(__name__)
 app.config.from_object(Config)
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(64), index=True, unique=True)
+    def __repr__(self):
+        return '<User {}>'.format(self.username)
 
 class searchdb(FlaskForm):
     results = StringField('results', validators=[DataRequired("You need to insert a product name")])
