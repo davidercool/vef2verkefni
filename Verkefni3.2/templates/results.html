@@ -6,8 +6,10 @@
     </head>
     <body>
     {% if len(listi) > 0 %}
-        {% for x in listi %}
-            <h3>{{ x.name }} {{ x.age }}</h3>
+        {% for x in range(len(listi2)) %}
+            {% if ans in listi[x] %}
+               <h3>{{ listi2[x].name }} {{ listi2[x].age }}</h3>
+            {% endif %}
         {% endfor %}
     {% else %}
         <p>No human with this name exists</p>
