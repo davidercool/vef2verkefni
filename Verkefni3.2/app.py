@@ -1,6 +1,6 @@
 from flask import *
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 from flask_sqlalchemy import SQLAlchemy
 try: from Verkefni32 import config
@@ -33,9 +33,12 @@ db.session.commit()
 def forms():
     form = searchdb()
     listi=person.query.all()
+    listi2=person.query.all()
+    for x, elem in enumerate(listi):
+        listi[x] = str(elem)[6:-1]
     if form.validate_on_submit():
-        return render_template('results.html', len=len, listi=listi, )
+        ans = form.results.data
+        return render_template('results.html', len=len, listi=listi, ans=ans, listi2=listi2, range=range)
     else:
-        print(form.productName.data.lower())
         return render_template('index.html', form=form)
 app.run("0.0.0.0", port=8080)
