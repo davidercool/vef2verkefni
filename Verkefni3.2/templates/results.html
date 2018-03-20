@@ -5,6 +5,12 @@
         <title>Results</title>
     </head>
     <body>
-
+    {% if len(listi) > 0 %}
+        {% for x in listi %}
+            <h3>{{ x.name }} {{ x.age }}</h3>
+        {% endfor %}
+    {% else %}
+        <p>No human with this name exists</p>
+    {% endif %}
     </body>
 </html>
